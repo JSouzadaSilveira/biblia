@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Testamento;
+use App\Models\Versiculo;
 use Illuminate\Http\Request;
 
-class TestamentoController extends Controller
+class VersiculoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class TestamentoController extends Controller
      */
     public function index()
     {
-        return Testamento::all();
+        return Versiculo::all();
     }
 
     /**
@@ -25,34 +25,34 @@ class TestamentoController extends Controller
      */
     public function store(Request $request)
     {
-        if ( Testamento::Create($request->all()) ) {
+        if ( Versiculo::Create($request->all()) ) {
             return response()->json([
-                'message' => ' Testamento cadastrado com sucesso.'
+                'message' => ' Versiculo cadastrado com sucesso.'
             ], 201);
         }
 
         return response()->json([
-            'message' => ' Erro ao cadastrar o testamento.'
+            'message' => ' Erro ao cadastrar o versiculo.'
         ], 201);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $testamento
+     * @param  int  $versiculo
      * @return \Illuminate\Http\Response
      */
-    public function show($testamento)
+    public function show($versiculo)
     {
-        $testamento = Testamento::find($testamento);
-        if ($testamento) {
-            $testamento->livros;
+        $versiculo = Versiculo::find($versiculo);
+        if ($versiculo) {
+            $versiculo->livro;
             
-            return $testamento;
+            return $versiculo;
         }
 
         return response()->json([
-            'message' => ' Erro ao pesquisar o testamento.'
+            'message' => ' Erro ao pesquisar o versiculo.'
         ], 404);
     }
 
@@ -60,39 +60,39 @@ class TestamentoController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $testamento
+     * @param  int  $versiculo
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $testamento)
+    public function update(Request $request, $versiculo)
     {
-        $testamento = Testamento::find($testamento);
-        if ($testamento) {
-            $testamento->update($request->all());
+        $versiculo = Versiculo::find($versiculo);
+        if ($versiculo) {
+            $versiculo->update($request->all());
 
-            return $testamento;
+            return $versiculo;
         }
 
         return response()->json([
-            'message' => ' Erro ao atualizar o testamento.'
+            'message' => ' Erro ao atualizar o versiculo.'
         ], 404);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $testamento
+     * @param  int  $versiculo
      * @return \Illuminate\Http\Response
      */
-    public function destroy($testamento)
+    public function destroy($versiculo)
     {
-        if (Testamento::destroy($testamento)) {
+        if (Versiculo::destroy($versiculo)) {
             return response()->json([
-                'message' => ' Testamento deletado com sucesso.'
+                'message' => ' versiculo deletado com sucesso.'
             ], 200);
         }
 
         return response()->json([
-            'message' => ' Erro ao deletar o testamento.'
+            'message' => ' Erro ao deletar o versiculo.'
         ], 404);
     }
 }
