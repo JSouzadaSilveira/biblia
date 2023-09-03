@@ -19,9 +19,16 @@ class Livro extends Model
     }
 
     /**
-     * Pegar todos os livros vinculados
-     */
+    * Pegar todos os livros vinculados
+    */
     public function versiculos() {
         return $this->hasMany(Versiculo::class);
+    }
+
+    /**
+    * Pegar todos os livros vinculados
+    */
+    public function traducao() {
+        return $this->belongsTo(Versiculo::class);
     }
 }

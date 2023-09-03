@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Livro;
+use App\Models\Traducao;
 use Illuminate\Http\Request;
 
-class LivroController extends Controller
+class TraducaoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class LivroController extends Controller
      */
     public function index()
     {
-        return Livro::all();
+        Traducao::all();
     }
 
     /**
@@ -25,76 +25,72 @@ class LivroController extends Controller
      */
     public function store(Request $request)
     {
-        if (Livro::Create($request->all())) {
+        if ( Traducao::Create($request->all())) {
             return response()->json([
-                'message' => ' Livro cadastrado com sucesso.'
+                'message' => ' Traducao cadastrado com sucesso.'
             ], 201);
         }
 
         return response()->json([
-            'message' => ' Erro ao cadastrar o livro.'
+            'message' => ' Erro ao cadastrar o traducao.'
         ], 404);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $livro
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($livro)
+    public function show($traducao)
     {
-        $livro = Livro::find($livro);
-        if ($livro) {
-            $livro->testamento;
-            $livro->versiculos;
-
-            return $livro;
+        $traducao = Traducao::find($traducao);
+        if ($traducao) {
+            return $traducao;
         }
 
         return response()->json([
-            'message' => ' Erro ao pesquisar o livro.'
+            'message' => ' Erro ao pesquisar o traducao.'
         ], 404);
-
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $livro
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $livro)
+    public function update(Request $request, $traducao)
     {
-        $livro = Livro::find($livro);
-        if ($livro) {
-            $livro->update($request->all());
+        $traducao = Traducao::find($traducao);
+        if ($traducao) {
+            $traducao->update($request->all());
 
-            return $livro;
+            return $traducao;
         }
 
         return response()->json([
-            'message' => ' Erro ao atualizar o livro.'
+            'message' => ' Erro ao atualizar o traducao.'
         ], 404);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $livro
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($livro)
+    public function destroy($traducao)
     {
-        if (Livro::destroy($livro)) {
+        if (Traducao::destroy($traducao)) {
             return response()->json([
-                'message' => ' livro deletado com sucesso.'
+                'message' => ' traducao deletado com sucesso.'
             ], 200);
         }
 
         return response()->json([
-            'message' => ' Erro ao deletar o livro.'
+            'message' => ' Erro ao deletar o traducao.'
         ], 404);
     }
 }
